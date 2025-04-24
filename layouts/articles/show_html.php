@@ -1,0 +1,13 @@
+<section>
+    <div>
+        <h1 class="article-title"><?= $article['title'] ?></h1>
+        <p><?= $article['introduction'] ?></p>
+        <p><?= $article['content'] ?></p>
+        <p> <em>Publié le : <?= $article['created_at'] ?></em></p>
+        <p>Mis à jour le : <?= $article['updated_at'] ?></p>
+        <p>Par : <?= $_SESSION['auth'] ?></p>
+        <form action="" class="form">
+           <button> <a href="index" style="color:white ;text-decoration:none"; >Retour</a></button>
+        </form>
+    </div>
+</section>
