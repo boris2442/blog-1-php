@@ -46,7 +46,7 @@
         section a {
             text-decoration: none;
             color: #fff;
-            background-color: #333;
+            background-color:#2ECC71;
             padding: 10px 20px;
             border-radius: 5px;
             font-size: clamp(1rem, 2vw, 24px);

@@ -19,7 +19,7 @@ if (session_status() == PHP_SESSION_NONE) {
   <header>
     <div class="logo">
       <h2>
-        <a href="http://blogphp-2025.test">Blog-2025
+        <a href="http://localhost/blogphp-2025/">Blog-2025
         </a>
       </h2>
     </div>
