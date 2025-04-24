@@ -1,7 +1,16 @@
 <?php
 session_start();
 require_once 'database/database.php';
+$errors=[];
+$article_id=filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
+if(!$article_id || $article_id===NULL){
+$errors['article_id']='Parametre id non valide';
 
+}
+$sql="SELECT*FROM ARTICLES WHERE id=:article_id";
+$query=$pdo->prepare($sql);
+$query->execute(compact('article_id'));
+$article=$query->fetch();
 
 //recuperation des articles dans la datyabase...
 $sql="SELECT * FROM articles ORDER BY created_at DESC ";

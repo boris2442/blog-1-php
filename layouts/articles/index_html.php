@@ -10,7 +10,7 @@
 
   <p> <?= $article['introduction'] ?> </p>
 
-  <a href="#">Voir plus</a>
+  <a href="article.php?id=<?= $article['id'] ?>">Voir plus</a>
   </div>
   <hr>
   <?php  endforeach;  ?>
