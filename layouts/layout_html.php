@@ -27,10 +27,10 @@ if (session_status() == PHP_SESSION_NONE) {
     <nav>
       <ul>
         <?php if (isset($_SESSION['auth'])) : ?>
-        <li><a id="gcu" href="logout.php">Se deconnecter</a></li>
+          <li><a id="gcu" href="logout.php">Se deconnecter</a></li>
         <?php else : ?>
-        <li><a id="lien-header" href="register.php">S'inscrire</a></li>
-        <li><a href="login.php">Se connecter</a></li>
+          <li><a id="lien-header" href="register.php">S'inscrire</a></li>
+          <li><a href="login.php">Se connecter</a></li>
         <?php endif; ?>
       </ul>
     </nav>
@@ -38,12 +38,12 @@ if (session_status() == PHP_SESSION_NONE) {
   </header>
 
   <div class="main">
-  <?php
-    if(!empty($errors)){
+    <?php
+    if (!empty($errors)) {
 
       echo '<div style=" background:red; text-align:center; color:white; padding:2px 8px; font-size:25px;">'
-      .reset($errors).
-      '</div>';
+        . reset($errors) .
+        '</div>';
     }
     ?>
     <?= $pageContent ?>
