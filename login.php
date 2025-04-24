@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
         if ($user && password_verify($_POST['password'], $user['password'])) {
             $_SESSION['role'] = $user['role'];
             $_SESSION['auth'] = $user;
-
+  
 
             // Redirection en fonction du rôle
             switch ($user['role']) {
