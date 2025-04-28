@@ -1,3 +1,4 @@
+<h1><i>partie administrateur dashbord</i></h1>
 <h1>Listes des articles</h1>
 
 <hr>
