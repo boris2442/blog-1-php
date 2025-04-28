@@ -158,7 +158,7 @@ nav ul li a:active {
   margin-bottom: var(--sp-xs);
   font-size: var(--fs-9);
 }
-.form-control input, .form-control input[type="text"]
+.form-control input,.form-control textarea, .form-control input[type="text"]
 {
   width: 70%;
   height: 2.5rem;
