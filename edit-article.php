@@ -5,8 +5,40 @@ session_start();
 // 2Inclut le fichier de connexion à la base de données
 require_once 'database/database.php';
 
+if (isset($_GET['id'])) {
+    var_dump($_GET['id']);
+    $id = $_GET['id'];
+    $sql = "SELECT*FROM `articles` WHERE id=:id";
+    $requete = $pdo->prepare($sql);
+    $requete->bindParam(':id', $id);
+    $requete->execute();
+    $article = $requete->fetch();
+    echo "<pre>";
+    var_dump($article);
+    echo "</pre>";
 
-// 3-Définit le titre de la page
+    //renommer les donnees dans la database
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $sql = "UPDATE `articles` SET title=:title, slug=:slug, introduction=:introduction, content=:content WHERE id=:id";
+        $requete = $pdo->prepare($sql);
+        $requete->bindValue(':title', $_POST['title']);
+        $requete->bindValue(':slug', $_POST['slug']);
+        $requete->bindValue(':introduction', $_POST['introduction']);
+        $requete->bindValue(':content', $_POST['content']);
+        $requete->bindValue(':id', $id);
+        $requete->execute();
+        header('Location: index2.php');
+        exit();
+    }else{
+        echo "error 1";
+    }
+}else{
+    echo "error2";
+}
+
+
+//Définit le titre de la page
 $pageTitle = "Éditer un article";
 
 // 4-Démarre la mise en tampon de sortie pour capturer le contenu HTML
