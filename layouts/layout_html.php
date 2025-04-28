@@ -27,7 +27,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <nav>
       <ul>
         <?php if (isset($_SESSION['auth'])) : ?>
-          <li><a id="gcu" href="create">creer article</a></li>
+       
           <li><a id="gcu" href="logout">Se deconnecter</a></li>
         <?php else : ?>
           <li><a id="lien-header" href="register.php">S'inscrire</a></li>

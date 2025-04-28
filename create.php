@@ -42,7 +42,7 @@ if (!empty($_POST)) {
         $sql="INSERT INTO `articles` (`title`,`slug`, `introduction`, `content`) VALUES(?, ?, ?, ?)";
         $query=$pdo->prepare($sql);
         $query->execute([$title, $slug, $introduction, $content]);
-        header('location:index.php');
+        // header('location:index.php');
 
     }else{
         echo "errreur produite";
