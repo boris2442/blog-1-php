@@ -1,17 +1,13 @@
 <section style="display: flex; flex-direction:column;  justify-content:center; align-items:center">
-<div class="header">
-    <h1 style="width:400px ;">editer un article</h1>
-  </div>
-    <form method="post" class="form" id="form"
+
+    <form method="post" 
+    style="width:100%;" id="form"
     enctype="multipart/form-data">
         <div class="form-control">
             <label for="username">Titre de l'article</label>
             <input type="text" id="title" placeholder="Le developpement mobile" name="title" autocomplete="off" value="<?= $article['title'] ?? '' ?>">
         </div>
-        <div class="form-control">
-            <label for="slug">slug</label>
-            <input type="text" name="slug" value="<?= $article['slug'] ?? '' ?>" id="slug" placeholder="le-developpement-mobile">
-        </div>
+        
         <div class="form-control">
             <label for="text">introduction</label>
             <input type="text" id="text" value="<?= $article['introduction'] ?? ''?>" placeholder="L'introduction de l'article" name="introduction">

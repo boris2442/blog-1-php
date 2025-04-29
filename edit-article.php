@@ -20,15 +20,15 @@ if (isset($_GET['id'])) {
     //renommer les donnees dans la database
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $sql = "UPDATE `articles` SET title=:title, slug=:slug, introduction=:introduction, content=:content WHERE id=:id";
+        $sql = "UPDATE `articles` SET title=:title,  introduction=:introduction, content=:content WHERE id=:id";
         $requete = $pdo->prepare($sql);
         $requete->bindValue(':title', $_POST['title']);
-        $requete->bindValue(':slug', $_POST['slug']);
+      
         $requete->bindValue(':introduction', $_POST['introduction']);
         $requete->bindValue(':content', $_POST['content']);
         $requete->bindValue(':id', $id);
         $requete->execute();
-        header('Location: index2.php');
+        header('Location: admin.php');
         exit();
     }else{
         echo "error 1";
