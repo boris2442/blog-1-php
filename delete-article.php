@@ -17,5 +17,5 @@ if(isset($_GET)){
     $query=$pdo->prepare($sql);
     $query->bindParam('id', $id);
     $query->execute();
-    header('location:index2');
+    header('location:admin');
 }

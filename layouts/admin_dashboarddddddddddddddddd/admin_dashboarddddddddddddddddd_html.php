@@ -31,25 +31,27 @@
     </form>
 </section>
 <section>
-<h2>Listes des articles!!!</h2>
-<div style="display: flex; flex-wrap:wrap; gap:10px;  ">
-    <?php 
-    foreach($articles as $article):?>
-    <div class="content" style="width: 300px; box-shadow:2px 3px 5px #333; height:100px;">
-        <h2><?= $article['title'] ?></h2>
-        <p> <?= $article['introduction'] ?></p>
-        <div class="link" style="display: flex; gap:10px;">
-        <div class="">
-            <a href="">Voir plus</a>
+    <h2>Listes des articles!!!</h2>
+    <div
+        class="article-grid">
+        <?php
+        foreach ($articles as $article): ?>
+            <div class="article">
+                <h2><?= $article['title'] ?></h2>
+                <small> <?= $article['introduction'] ?></small>
+                <div class="link" style="display: flex; gap:10px;">
+                    <div class="">
+                        <a href="">Voir plus</a>
+                    </div>
+                    <div class="">
+                        <a href="edit-article.php?id=<?= $article['id'] ?>">editer</a>
+                    </div>
+                    <div class="">
+
+                        <a onClick="return confirm('Voulez-vous vraiment supprimer cet article ?')" ; href="delete-article.php?id=<?= urlencode($article['id']) ?>">supprimer</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
-        <div class="">
-            <a href="">editer</a>
-    </div>
-        <div class="">
-            <a href="delete-article.php?id=<?= $article['id'] ?>">supprimer</a>
-    </div>
-    </div>
-    </div>
-    <?php endforeach; ?>
-</div>
 </section>
