@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'database/database.php';
 
 //insertion de l'article dans la base de donnee
@@ -12,14 +13,7 @@ if (!empty($_POST)) {
     } else {
         $title = $_POST['title'];
     }
-    //slug
-    if (empty($_POST['slug'])) {
-        $errors['slug'] = 'slug obligatoire';
-    } elseif (strlen($_POST['slug']) > 55) {
-        $errors['slug'] = 'slug trop long';
-    } else {
-        $slug = $_POST['slug'];
-    }
+    
     //introduction
     if (empty($_POST['introduction'])) {
         $errors['introduction'] = 'introduction obligatoire';
@@ -39,9 +33,9 @@ if (!empty($_POST)) {
     }
 
     if(empty($errors)){
-        $sql="INSERT INTO `articles` (`title`,`slug`, `introduction`, `content`) VALUES(?, ?, ?, ?)";
+        $sql="INSERT INTO `articles` (`title`, `introduction`, `content`) VALUES(?, ?,  ?)";
         $query=$pdo->prepare($sql);
-        $query->execute([$title, $slug, $introduction, $content]);
+        $query->execute([$title, $introduction, $content]);
         // header('location:index.php');
 
     }else{
@@ -52,20 +46,3 @@ if (!empty($_POST)) {
 }
 
 
-
-// 1--On affiche le titre autre
-
-$pageTitle = 'creer un article';
-
-// 2-Debut du tampon de la page de sortie
-
-ob_start();
-
-// 3-inclure le layout de la page d' accueil
-require_once 'layouts/admin_dashboarddddddddddddddddd/admin_dashboarddddddddddddddddd_html.php';
-
-//4-recuperation du contenu du tampon de la page d'accueil
-$pageContent = ob_get_clean();
-
-//5-Inclure le layout de la page de sortie
-require_once 'layouts/layout_html.php';

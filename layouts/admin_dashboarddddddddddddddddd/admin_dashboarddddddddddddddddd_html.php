@@ -32,12 +32,12 @@
 </section>
 <section>
 <h2>Listes des articles!!!</h2>
-<div class="container">
+<div style="display: flex; flex-wrap:wrap; gap:10px;  ">
     <?php 
     foreach($articles as $article):?>
-    <div class="box">
+    <div class="content" style="width: 300px; box-shadow:2px 3px 5px #333; height:100px;">
         <h2><?= $article['title'] ?></h2>
-        <p><?php $article['introduction'] ?></p>
+        <p> <?= $article['introduction'] ?></p>
         <div class="link" style="display: flex; gap:10px;">
         <div class="">
             <a href="">Voir plus</a>
@@ -46,7 +46,7 @@
             <a href="">editer</a>
     </div>
         <div class="">
-            <a href="">supprimer</a>
+            <a href="delete-article.php?id=<?= $article['id'] ?>">supprimer</a>
     </div>
     </div>
     </div>

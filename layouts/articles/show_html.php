@@ -5,9 +5,9 @@
         <p><?= $article['content'] ?></p>
         <p> <em>Publié le : <?= $article['created_at'] ?></em></p>
         <p>Mis à jour le : <?= $article['updated_at'] ?></p>
-        <p>Par : <?= $_SESSION['auth']['username'] ?></p>
+      
         <form action="" class="form">
-            <button> <a href="index" style="color:white ;text-decoration:none" ;>Retour</a></button>
+            <button> <a href="index.php" style="color:white ;text-decoration:none" ;>Retour</a></button>
         </form>
     </div>
 </section>
