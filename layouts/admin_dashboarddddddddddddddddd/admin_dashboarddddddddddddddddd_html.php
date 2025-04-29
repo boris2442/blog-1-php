@@ -41,7 +41,7 @@
                 <small> <?= $article['introduction'] ?></small>
                 <div class="link" style="display: flex; gap:10px;">
                     <div class="">
-                        <a href="">Voir plus</a>
+                        <a href="article_admin.php?id=<?= $article['id'] ?>">Voir plus</a>
                     </div>
                     <div class="">
                         <a href="edit-article.php?id=<?= $article['id'] ?>">editer</a>

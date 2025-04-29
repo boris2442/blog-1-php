@@ -6,37 +6,47 @@ session_start();
 require_once 'database/database.php';
 
 if (isset($_GET['id'])) {
-    var_dump($_GET['id']);
+
     $id = $_GET['id'];
     $sql = "SELECT*FROM `articles` WHERE id=:id";
     $requete = $pdo->prepare($sql);
     $requete->bindParam(':id', $id);
     $requete->execute();
     $article = $requete->fetch();
-    echo "<pre>";
-    var_dump($article);
-    echo "</pre>";
+ 
 
     //renommer les donnees dans la database
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $sql = "UPDATE `articles` SET title=:title,  introduction=:introduction, content=:content WHERE id=:id";
-        $requete = $pdo->prepare($sql);
-        $requete->bindValue(':title', $_POST['title']);
-      
-        $requete->bindValue(':introduction', $_POST['introduction']);
-        $requete->bindValue(':content', $_POST['content']);
-        $requete->bindValue(':id', $id);
-        $requete->execute();
-        header('Location: admin.php');
-        exit();
-    }else{
-        echo "error 1";
-    }
-}else{
-    echo "error2";
-}
+        //verification de la taille du tiitre de l article
+        if (strlen($_POST['title']) > 30 || empty($_POST['title'])) {
+            $errors = 'title non valide ';
+        }
+        if (strlen($_POST['introduction']) > 30 || empty($_POST['introduction'])) {
+            $errors['introduction'] = 'title non valide ';
+        }
+        if (strlen($_POST['content']) > 500 || empty($_POST['content'])) {
+            $errors['content'] = 'title non valide ';
+        }
+        if (empty($errors)) {
+            //echo "ok";
+            $sql = "UPDATE `articles` SET title=:title,  introduction=:introduction, content=:content WHERE id=:id";
+            $requete = $pdo->prepare($sql);
+            $requete->bindValue(':title', $_POST['title']);
 
+            $requete->bindValue(':introduction', $_POST['introduction']);
+            $requete->bindValue(':content', $_POST['content']);
+            $requete->bindValue(':id', $id);
+            $requete->execute();
+            header('Location: admin.php');
+            exit();
+        } else {
+            echo "<pre>";
+            var_dump($errors);
+            echo "</pre>";
+        }
+    }
+}
 
 //Définit le titre de la page
 $pageTitle = "Éditer un article";
