@@ -8,6 +8,10 @@
             <label for="username">Titre de l'article</label>
             <input type="text" id="title" placeholder="Le developpement mobile" name="title" autocomplete="off">
         </div>
+        <div class="form-control" hidden>
+            <label for="slug">slug</label>
+            <input type="text" id="title"    placeholder="Le developpement mobile" name="slug" autocomplete="off">
+        </div>
 
         <div class="form-control">
             <label for="text">introduction</label>
@@ -18,7 +22,7 @@
             <textarea name="content" id="content" placeholder="contenu de l'article" style="resize: none; height: 100px; width:70%; border-radius:7px; "></textarea>
         </div>
         <div class="form-control">
-            <button type="submit" class="btn" style="  width: 70%;
+            <button type="submit" name="add-article" class="btn" style="  width: 70%;
   padding: var(--sp-sm);
   font-size: var(--fs-6);
   background: var(--color-first);
