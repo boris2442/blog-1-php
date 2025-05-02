@@ -2,6 +2,13 @@
 session_start();
 
 require_once 'database/database.php';
+if(!isset($_SESSION['auth'])) {
+    header('Location: login.php');
+    exit();
+}elseif($_SESSION['auth']['role'] !== 'admin'){
+    header('Location: index.php');
+    exit();
+}
 
 // Récupère les articles existants
 $sql = "SELECT * FROM `articles`";
