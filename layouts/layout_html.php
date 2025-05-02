@@ -10,6 +10,13 @@ if (session_status() == PHP_SESSION_NONE) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog PHP moderne pour gérer, publier et organiser facilement vos articles. Interface intuitive, fonctions d'administration, et design épuré.">
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- inserer le logo de l image -->
+  <link rel="icon" href="layouts/assets/logo_blog.png" type="image/png" sizes="16x16">
+
+
   <link rel="stylesheet" href="./layouts/style.css">
   <link rel="stylesheet" href="./layouts/paginate.css">
   <title>Cours blog PHP 2024 - <?= $pageTitle ?> </title>
@@ -25,16 +32,26 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
 
     <nav>
-      <ul>
-        <?php if (isset($_SESSION['auth'])) : ?>
-       
-          <li><a id="gcu" href="logout">Se deconnecter</a></li>
-        <?php else : ?>
-          <li><a id="lien-header" href="register.php">S'inscrire</a></li>
-          <li><a href="login.php">Se connecter</a></li>
-        <?php endif; ?>
-      </ul>
-    </nav>
+  <ul>
+    <?php if (isset($_SESSION['auth'])): ?>
+      
+      <!-- L’utilisateur est connecté -->
+      <?php if ($_SESSION['auth']['role'] === 'admin'): ?>
+        <li><a id="lien-header" href="admin.php">Dashboard Admin</a></li>
+      <?php endif; ?>
+      
+      <li><a id="gcu" href="logout.php">Se déconnecter</a></li>
+
+    <?php else: ?>
+
+      <!-- L’utilisateur n’est pas connecté -->
+      <li><a id="lien-header" href="register.php">S'inscrire</a></li>
+      <li><a href="login.php">Se connecter</a></li>
+
+    <?php endif; ?>
+  </ul>
+</nav>
+
 
   </header>
 
