@@ -1,6 +1,48 @@
 <?php
 session_start();
 require_once "database/database.php";
+
+if (!isset($_SESSION['auth']['id'])) {
+  header('location: login.php');
+  exit();
+}
+
+$user_auth = $_SESSION['auth']['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // echo "ok";
+  // die();
+
+  $content = htmlspecialchars($_POST['content'] ?? '');
+
+  // $article_id = $_POST['article_id'] ?? null;
+  $article_id = intval($_POST['article_id'] ?? null);
+  $query = $pdo->prepare('SELECT COUNT(*) FROM articles WHERE id=:article_id ');
+  $query->execute(['article_id' => $article_id]);
+  $articleExists = $query->fetchColumn();
+  //insertion du commentaire
+
+  $query = $pdo->prepare("INSERT INTO `comments` (content, article_id, user_id, created_at)  VALUES (?,?,?, NOW())");
+  
+  var_dump($article_id,$user_auth, $content);
+  $query->execute([
+    $content,
+    $article_id,
+    $user_auth
+   ]);
+  
+
+
+  //redirection dans la page des articles du commentaire
+header('location:index.php');
+
+}
+
+
+
+
+
+
+
 /**
  * CE FICHIER DOIT ENREGISTRER UN NOUVEAU COMMENTAIRE EST REDIRIGER SUR L'ARTICLE !
  * 
@@ -22,48 +64,7 @@ require_once "database/database.php";
  */
 // 6var_dump($_SESSION['auth']['id']);
 // die();
-$user_auth = $_SESSION['auth']['id'];
+
 
 // var_dump($user_auth);
 // die();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
- 
-//  echo "ok";
-  $content = $_POST['content'] ?? null;
-  $article_id = $_POST['article_id'] ?? null;
-  
-  
-  // 4Vérification finale des infos envoyées dans le formulaire (donc dans le POST)
-  // DSi il n'y a pas l'id de l'user  OU qu'il n'y a pas de contenu OU qu'il n'y a pas d'identifiant d'article
-  if (!$user_auth || !$article_id || !$content) {
-    // var_dump($article_id );
-    // die();
-      die("Votre formulaire a été mal rempli !");
-  }
-  
-  // 4-On fait quand même gaffe à ce que le gars n'essaye pas des balises cheloues dans son commentaire
-  $content = htmlspecialchars($content);
-  
-  // var_dump($content);
-  // die();
-  
-  // 4-Vérification de l'existence de l'article
-  $query = $pdo->prepare('SELECT COUNT(*) FROM articles WHERE id = :article_id');
-  $query->execute(['article_id' => $article_id]);
-  $articleExists = $query->fetchColumn();
-  
-  if (!$articleExists) {
-      die("Ho ! L'article $article_id n'existe pas boloss !");
-  }
-  
-  // 5Insertion du commentaire
-  $query = $pdo->prepare('INSERT INTO comments SET content = :content, article_id = :article_id,  user_id = :user_auth,created_at = NOW()');
-  $query->execute(compact( 'content', 'article_id','user_auth'));
-  
-
-
-  // 6Rediriger vers la page de l'article après l'ajout du commentaire
-  header("Location: article.php?id=" . $article_id);
-  exit;
-}

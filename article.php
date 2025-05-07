@@ -19,7 +19,11 @@ $query->execute();
 $articles = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
-
+$sql="SELECT* FROM comments WHERE article_id=:article_id";
+$requete=$pdo->prepare($sql);
+$requete->bindValue(':article_id',$article_id );
+$requete->execute();
+$commentaires=$requete->fetchAll(PDO::FETCH_ASSOC);
 
 // 1--On affiche le titre autre
 
