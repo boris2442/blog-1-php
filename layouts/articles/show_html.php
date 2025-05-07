@@ -14,11 +14,11 @@
 
             <h2 class="comment-heading">Il n'y a pas encore de commentaires pour cet article... SOYEZ LE PREMIER ! :D</h2>
         <?php else : ?>
-            <h2 class="comment-heading">Il y a déjà <?php count($commentaires) ?>réactions :</h2>
+            <h2 class="comment-heading">Il y a déjà <?= count($commentaires) ?> réactions :</h2>
             <?php foreach ($commentaires as $commentaire): ?>
 
-                <h3 class="comment-author">Commentaire de : Nom de l'auteur</h3>
-                <small class="comment-date"><?= $commentaire['created_at'] ?></small>
+                <h3 class="comment-author">Commentaire de : <?= $commentaire['username']?></h3>
+                <small class="comment-date">creer le:<?= $commentaire['created_at'] ?></small>
                 <blockquote class="comment-content">
                     <em><?= $commentaire['content'] ?></em>
                 </blockquote>
