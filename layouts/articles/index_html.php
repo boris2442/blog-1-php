@@ -3,6 +3,7 @@
 
 <hr>
 <div>
+  
   <?php
   foreach ($articles as $article): 
     ?>
