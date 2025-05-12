@@ -28,7 +28,7 @@ $paginator = new Paginator(
     $itemsPerPage,
     $currentPage,
 
-    '?page=(num)'
+    '?page=(:num)'
 
 );
 

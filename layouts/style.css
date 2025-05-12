@@ -253,3 +253,10 @@ a.passforget {
     font-size: var(--fs-7);
   }
 }
+ul.pagination{
+  display: flex ;
+
+}
+ul.pagination li{
+  list-style: none;
+}

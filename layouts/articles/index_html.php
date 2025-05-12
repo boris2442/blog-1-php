@@ -18,3 +18,6 @@
     <hr>
   <?php endforeach; ?>
 </div>
+<div class="">
+<?= $paginator ?>
+</div>
