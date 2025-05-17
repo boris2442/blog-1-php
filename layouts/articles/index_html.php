@@ -1,23 +1,22 @@
-
 <h1>Listes des articles</h1>
 
 <hr>
 <div>
-  
+
   <?php
-  foreach ($articles as $article): 
-    ?>
+  foreach ($articles as $article):
+  ?>
     <div>
-    <h2> <?= htmlspecialchars($article['title']) ?> </h2>
+      <h2> <?= htmlspecialchars($article['title']) ?> </h2>
 
-    <p> <?= htmlspecialchars($article['introduction']) ?> </p>
+      <p> <?= htmlspecialchars($article['introduction']) ?> </p>
 
-    <a href="article.php?id=<?= urlencode($article['id']) ?>">Voir plus</a>
-    
+      <a href="article.php?id=<?= urlencode($article['id']) ?>">Voir plus</a>
+
     </div>
     <hr>
   <?php endforeach; ?>
 </div>
 <div class="">
-<?= $paginator ?>
+  <?= $paginator ?>
 </div>
