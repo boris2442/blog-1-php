@@ -11,13 +11,13 @@ $query = $pdo->prepare($sql);
 $query->execute(compact('article_id'));
 $article = $query->fetch();
 
-//recuperation des articles dans la datyabase...
+//recuperation des articles dans la database...
 $sql = "SELECT * FROM articles ORDER BY created_at DESC ";
 $query = $pdo->prepare($sql);
 $query->execute();
 $articles = $query->fetchAll(PDO::FETCH_ASSOC);
 
-
+//recuperer tous les commentaires d'un articles 
 $sql="SELECT comments.*, users.username FROM
  comments
  JOIN users ON comments.user_id=users.id
