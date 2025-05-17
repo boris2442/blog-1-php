@@ -1,7 +1,8 @@
 <?php
 session_start();
-require_once 'database/database.php';
-
+require_once 'libraries/database.php';
+$pdo=getPdo();
+// require_once 'libraries/utils.php';
 
 // 3-Définit le titre de la page
 $pageTitle = "supprimer un article";

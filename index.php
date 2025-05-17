@@ -1,5 +1,8 @@
 <?php
-require_once 'database/database.php';
+require_once 'libraries/database.php';
+require_once 'libraries/utils.php';
+$pdo=getPdo();
+
 
 require 'vendor/autoload.php';
 
@@ -38,15 +41,11 @@ $paginator = new Paginator(
 
 $pageTitle = 'Accueil du Blog';
 
-// 2-Debut du tampon de la page de sortie
+// $path="index";
+render('articles/index',[
+ 
+  'pageTitle'=>$pageTitle,
+  'articles'=>$articles,
+  'paginator'=>$paginator
 
-ob_start();
-
-// 3-inclure le layout de la page d' accueil
-require_once 'layouts/articles/index_html.php';
-
-//4-recuperation du contenu du tampon de la page d'accueil
-$pageContent = ob_get_clean();
-
-//5-Inclure le layout de la page de sortie
-require_once 'layouts/layout_html.php';
+]);

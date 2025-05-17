@@ -1,19 +1,29 @@
 <?php
-require_once 'database/database.php';
+require_once 'libraries/database.php';
+require_once 'librairies/utils.php';
+$pdo=getPdo();
 
-// 1--On affiche le titre autre
 
-$pageTitle ='page users'; 
 
-// 2-Debut du tampon de la page de sortie
+
+// $pageTitle ='page users'; 
  
-ob_start();
+// ob_start();
 
-// 3-inclure le layout de la page d' admin
-require_once 'layouts/users_dddddddddddddddd/usersddddddddddddddddd_html.php';
+// require_once 'layouts/users_dddddddddddddddd/usersddddddddddddddddd_html.php';
 
-//4-recuperation du contenu du tampon de la page d'admin
-$pageContent = ob_get_clean();
+// $pageContent = ob_get_clean();
 
-//5-Inclure le layout de la page de sortie
-require_once 'layouts/layout_html.php';
+// require_once 'layouts/layout_html.php';
+
+
+// $pageTitle = 'page users';
+
+// $path="index";
+render('users_dddddddddddddddd/usersddddddddddddddddd',[
+ 
+  'pageTitle'=>$pageTitle,
+//   'articles'=>$articles,
+//   'paginator'=>$paginator
+
+]);
