@@ -10,7 +10,7 @@
         </div>
         <div class="" hidden>
             <label for="slug">slug</label>
-            <input type="text"  placeholder="Le developpement mobile" name="slug" autocomplete="off" >
+            <input type="text" placeholder="Le developpement mobile" name="slug" autocomplete="off">
         </div>
 
 
@@ -59,4 +59,5 @@
             </div>
         <?php endforeach; ?>
     </div>
+    <?= $paginator?>
 </section>

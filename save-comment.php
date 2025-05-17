@@ -9,8 +9,7 @@ if (!isset($_SESSION['auth']['id'])) {
 
 $user_auth = $_SESSION['auth']['id'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // echo "ok";
-  // die();
+
 
   $content = htmlspecialchars($_POST['content'] ?? '');
 

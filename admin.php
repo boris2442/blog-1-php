@@ -98,7 +98,7 @@ function removeAccents($string)
 if (isset($_POST['add-article'])) {
     $title = clean_input($_POST['title']);
     $slug = createSlug($title);
-   
+
     $introduction = clean_input($_POST['introduction']);
     $content = clean_input($_POST['content']);
 
@@ -113,10 +113,56 @@ if (isset($_POST['add-article'])) {
 
 // -Recuperation de tous les articles
 
-$query = "SELECT * FROM articles ORDER BY created_at DESC ";
-$resultats = $pdo->prepare($query);
-$resultats->execute();
-$articles = $resultats->fetchAll();
+// $query = "SELECT * FROM articles ORDER BY created_at DESC ";
+// $resultats = $pdo->prepare($query);
+// $resultats->execute();
+// $articles = $resultats->fetchAll();
+
+
+require 'vendor/autoload.php';
+
+use JasonGrimes\Paginator;
+
+$itemsPerPage = 5; //nbre article par page
+$currentPage = $_GET['page'] ?? 1; //page actuelle
+
+$totalQuery = $pdo->query("SELECT COUNT(*) FROM articles");
+$totalItems = $totalQuery->fetchColumn(); //recupere le nombre Total  d articles 
+$offset = ($currentPage - 1) * $itemsPerPage;
+
+
+//recuperation des articles dans la datyabase...
+$sql = "SELECT * FROM articles ORDER BY created_at
+ DESC
+ LIMIT :limit OFFSET :offset
+  ";
+$query = $pdo->prepare($sql);
+$query->bindParam(':limit', $itemsPerPage, PDO::PARAM_INT);
+$query->bindParam(':offset', $offset, PDO::PARAM_INT);
+$query->execute();
+$articles = $query->fetchAll(PDO::FETCH_ASSOC);
+$paginator = new Paginator(
+    $totalItems,
+    $itemsPerPage,
+    $currentPage,
+
+    '?page=(:num)'
+
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $pageTitle = 'Page Admin';
 
