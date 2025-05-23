@@ -2,6 +2,7 @@
 session_start();
 require_once 'libraries/database.php';
 $pdo=getPdo();
+require_once "libraries/utils.php";
 // require_once 'libraries/utils.php';
 
 // 3-Définit le titre de la page
@@ -18,5 +19,6 @@ if(isset($_GET)){
     $query=$pdo->prepare($sql);
     $query->bindParam('id', $id);
     $query->execute();
-    header('location:admin');
+    // header('location:admin');
+    redirect("admin");
 }

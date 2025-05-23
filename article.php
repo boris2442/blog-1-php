@@ -47,13 +47,14 @@ $commentaires = $requete->fetchAll(PDO::FETCH_ASSOC);
 $pageTitle = 'article ';
 
 // $path="index";
-render('articles/show',[
+// render('articles/show',[
  
-  'pageTitle'=>$pageTitle,
+//   'pageTitle'=>$pageTitle,
 
-  'article'=>$article,
-  'article_id'=>$article_id,
+//   'article'=>$article,
+//   'article_id'=>$article_id,
 
-  'commentaires'=>$commentaires
+//   'commentaires'=>$commentaires
 
-]);
+// ]);
+render('articles/show',compact('pageTitle', 'article','article_id', 'commentaires'));

@@ -5,8 +5,8 @@ require_once 'libraries/utils.php';
 $pdo=getPdo();
 
 if ($_SESSION['role'] != 'admin') {
-    header('Location: index.php');
-    exit();
+   
+    redirect("index.php");
 }
 //-Nettoyage des entrées
 
@@ -168,7 +168,7 @@ $pageTitle = 'Page Admin';
 
 // require_once 'layouts/layout_html.php';
 render('admin_dashboarddddddddddddddddd/admin_dashboarddddddddddddddddd',[
-   'Page Admin'=> $pageTitle,
+   'pageTitle'=> $pageTitle,
     'paginator'=>$paginator,
     'articles'=>$articles
 ]);

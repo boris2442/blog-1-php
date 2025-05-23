@@ -15,3 +15,10 @@ function render(string $path, array $variables=[]){
     $pageContent=ob_get_clean();
     require_once "layouts/layout_html.php";
 }
+/**
+ * void signifie que la fonction ne retourne rien
+ */
+function redirect(string $url):void{
+redirect("location:$url");
+exit();
+}

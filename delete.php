@@ -20,5 +20,6 @@ if(isset($_GET)){
     $query=$pdo->prepare($sql);
     $query->bindParam('id', $id);
     $query->execute();
-    header('location:index');
+    // header('location:index');
+    redirect("index");
 }
